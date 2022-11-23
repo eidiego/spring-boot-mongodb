@@ -1,6 +1,7 @@
 package com.eidiego.workshopspring.services;
 
 import com.eidiego.workshopspring.domain.User;
+import com.eidiego.workshopspring.dto.UserDTO;
 import com.eidiego.workshopspring.repository.UserRepository;
 import com.eidiego.workshopspring.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,15 @@ public class UserService {
         Optional<User> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado."));
     }
+
+    public User insert(User obj) {
+      return repo.insert(obj);
+    };
+
+    public User fromDTO(UserDTO objDto) {
+        return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
+    };
+
+
 
 }
