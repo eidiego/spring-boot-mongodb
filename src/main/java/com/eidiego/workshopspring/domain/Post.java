@@ -15,16 +15,17 @@ public class Post implements Serializable {
     private Date date;
     private String title;
     private String body;
-
+    private User author;
 
     public Post() {
     }
 
-    public Post(String id, Date date, String title, String body) {
+    public Post(String id, Date date, String title, String body, User author) {
         this.id = id;
         this.date = date;
         this.title = title;
         this.body = body;
+        this.author = author;
     }
 
     public String getId() {
@@ -67,6 +68,13 @@ public class Post implements Serializable {
         Post post = (Post) o;
         return Objects.equals(id, post.id);
     }
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
 
     @Override
     public int hashCode() {
@@ -82,5 +90,6 @@ public class Post implements Serializable {
                 ", body='" + body + '\'' +
                 '}';
     }
+
 }
 
