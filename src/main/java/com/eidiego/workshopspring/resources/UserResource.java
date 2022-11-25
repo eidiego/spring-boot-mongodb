@@ -1,5 +1,6 @@
 package com.eidiego.workshopspring.resources;
 
+import com.eidiego.workshopspring.domain.Post;
 import com.eidiego.workshopspring.domain.User;
 import com.eidiego.workshopspring.dto.UserDTO;
 import com.eidiego.workshopspring.services.UserService;
@@ -32,6 +33,12 @@ public class UserResource {
 
         User obj = service.findById(id);
         return ResponseEntity.ok().body(new UserDTO(obj));
+    };
+
+    @RequestMapping(value="/{id}/posts", method= RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPost(@PathVariable String id) {
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
     };
 
     @PostMapping
