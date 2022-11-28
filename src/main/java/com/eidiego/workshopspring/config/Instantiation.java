@@ -3,6 +3,7 @@ package com.eidiego.workshopspring.config;
 import com.eidiego.workshopspring.domain.Post;
 import com.eidiego.workshopspring.domain.User;
 import com.eidiego.workshopspring.dto.AuthorDTO;
+import com.eidiego.workshopspring.dto.CommentDTO;
 import com.eidiego.workshopspring.repository.PostRepository;
 import com.eidiego.workshopspring.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,10 @@ public class Instantiation implements CommandLineRunner {
 
         Post post1 = new Post(null,sdf.parse("21/03/2018"), "Partiu viagem!", "Vou viajar para SP!", new AuthorDTO(maria));
         Post post2 = new Post(null,sdf.parse("23/03/2018"), "Bom dia!", "Acordei feliz hoje!", new AuthorDTO(maria));
+
+        CommentDTO c1 = new CommentDTO("Boa viagem mano!", sdf.parse("21/03/2018"), new AuthorDTO(alex));
+
+        post1.getComments().add(c1);
 
         postRepository.saveAll(Arrays.asList(post1, post2));
 
